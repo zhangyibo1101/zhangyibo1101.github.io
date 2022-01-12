@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2022/1 | Hexo</title>
+  <title>大数运算01 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2022/01/index.html">
+  <meta name="description" content="字符数字转化为整型数字方法：‘字符’ - ‘0’ ,举例如下： 123char a&#x3D;&amp;#x27;5&amp;#x27;,b&#x3D;&amp;#x27;0&amp;#x27;;int c&#x3D;a-b;cout&lt;&lt; c &lt;&lt;endl; &#x2F;&#x2F;结果输出5 原理：&amp;emsp;&amp;emsp;字符相加减实际上就是该字符所对应的ASK码相加减，数字的ASK码是按照顺序来规定的，‘0’到‘9’的ASK码值依次是48到58；因此">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大数运算01">
+<meta property="og:url" content="http://example.com/2022/01/12/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%9701/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="字符数字转化为整型数字方法：‘字符’ - ‘0’ ,举例如下： 123char a&#x3D;&amp;#x27;5&amp;#x27;,b&#x3D;&amp;#x27;0&amp;#x27;;int c&#x3D;a-b;cout&lt;&lt; c &lt;&lt;endl; &#x2F;&#x2F;结果输出5 原理：&amp;emsp;&amp;emsp;字符相加减实际上就是该字符所对应的ASK码相加减，数字的ASK码是按照顺序来规定的，‘0’到‘9’的ASK码值依次是48到58；因此">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-01-12T15:53:46.000Z">
+<meta property="article:modified_time" content="2022-01-12T16:24:18.145Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -150,103 +154,161 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-大数运算01" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      大数运算01
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/12/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%9701/" class="archive-article-date">
+
+        
+        <a href="/2022/01/12/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%9701/" class="archive-article-date">
   	<time datetime="2022-01-12T15:53:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-12</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/12/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%9701/">大数运算01</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="字符数字转化为整型数字"><a href="#字符数字转化为整型数字" class="headerlink" title="字符数字转化为整型数字"></a>字符数字转化为整型数字</h1><h2 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h2><p><strong>‘字符’ - ‘0’</strong> ,举例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">char a=&#x27;5&#x27;,b=&#x27;0&#x27;;</span><br><span class="line">int c=a-b;</span><br><span class="line">cout&lt;&lt; c &lt;&lt;endl; //结果输出5</span><br></pre></td></tr></table></figure>
+<h2 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h2><p>&emsp;&emsp;字符相加减实际上就是该字符所对应的ASK码相加减，<strong>数字的ASK码是按照顺序来规定的</strong>，‘0’到‘9’的ASK码值依次是48到58；因此他们ASK码的差值恰好等于自身的数值，我们这里再用一个整形数去接收它，就能成功实现将字符数字转化为整型数字了。</p>
+<h2 id="应用："><a href="#应用：" class="headerlink" title="应用："></a>应用：</h2><p>&emsp;&emsp;在大数运算的算法类型中经常会出现由字符串作为输入值的算法题，那么怎么将字符串的各个字符传化为数字进行运算是破解该类型题的第一步。举例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">string str=&quot;453547&quot;;</span><br><span class="line">int i;</span><br><span class="line">cin&gt;&gt;i; //i&lt;str.size()-1;</span><br><span class="line">int x=str[i]-&#x27;0&#x27;; //将第i个字符数字转化为整型数字</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
 
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/01/12/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%9701/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/12/%E7%AE%97%E6%B3%95%E9%9A%8F%E6%83%B3/" class="archive-article-date">
-  	<time datetime="2022-01-12T14:32:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-12</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2022/01/12/%E7%AE%97%E6%B3%95%E9%9A%8F%E6%83%B3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">算法随想</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/12/%E7%AE%97%E6%B3%95%E9%9A%8F%E6%83%B3/">算法随想</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/12/hello-world/" class="archive-article-date">
-  	<time datetime="2022-01-12T08:09:43.305Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/12/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -269,8 +331,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

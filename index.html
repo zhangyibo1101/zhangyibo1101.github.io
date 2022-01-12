@@ -152,6 +152,137 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-大数运算01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/12/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%9701/">大数运算01</a>
+    </h1>
+  
+
+        
+        <a href="/2022/01/12/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%9701/" class="archive-article-date">
+  	<time datetime="2022-01-12T15:53:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="字符数字转化为整型数字"><a href="#字符数字转化为整型数字" class="headerlink" title="字符数字转化为整型数字"></a>字符数字转化为整型数字</h1><h2 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h2><p><strong>‘字符’ - ‘0’</strong> ,举例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">char a=&#x27;5&#x27;,b=&#x27;0&#x27;;</span><br><span class="line">int c=a-b;</span><br><span class="line">cout&lt;&lt; c &lt;&lt;endl; //结果输出5</span><br></pre></td></tr></table></figure>
+<h2 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h2><p>&emsp;&emsp;字符相加减实际上就是该字符所对应的ASK码相加减，<strong>数字的ASK码是按照顺序来规定的</strong>，‘0’到‘9’的ASK码值依次是48到58；因此他们ASK码的差值恰好等于自身的数值，我们这里再用一个整形数去接收它，就能成功实现将字符数字转化为整型数字了。</p>
+<h2 id="应用："><a href="#应用：" class="headerlink" title="应用："></a>应用：</h2><p>&emsp;&emsp;在大数运算的算法类型中经常会出现由字符串作为输入值的算法题，那么怎么将字符串的各个字符传化为数字进行运算是破解该类型题的第一步。举例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">string str=&quot;453547&quot;;</span><br><span class="line">int i;</span><br><span class="line">cin&gt;&gt;i; //i&lt;str.size()-1;</span><br><span class="line">int x=str[i]-&#x27;0&#x27;; //将第i个字符数字转化为整型数字</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/01/12/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%9701/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-算法随想" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/12/%E7%AE%97%E6%B3%95%E9%9A%8F%E6%83%B3/">算法随想</a>
+    </h1>
+  
+
+        
+        <a href="/2022/01/12/%E7%AE%97%E6%B3%95%E9%9A%8F%E6%83%B3/" class="archive-article-date">
+  	<time datetime="2022-01-12T14:32:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="算法随想"><a href="#算法随想" class="headerlink" title="算法随想"></a>算法随想</h1><h2 id="什么是算法？"><a href="#什么是算法？" class="headerlink" title="什么是算法？"></a>什么是算法？</h2><p>&emsp;&emsp;广义上讲，算法就是“达成某种目的的步骤”,在计算机界，我们将通过数据处理、数值运算、组合计算、模拟等操作解决问题的步骤成为算法。严格来说，算法是一种<strong>具有明确定义的规则</strong>，能针对问题进行正确输出并停止。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/01/12/%E7%AE%97%E6%B3%95%E9%9A%8F%E6%83%B3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
