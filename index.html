@@ -172,7 +172,66 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="大数乘法"><a href="#大数乘法" class="headerlink" title="大数乘法"></a>大数乘法</h1><p>&emsp;&emsp;大数乘法是基于大数加法的算法，大致思路如下：</p>
+<p>&emsp;&emsp;将两个数的其中一个数的每个位数依次乘以另外那个数的各个位数，再将得到的各个结果相加（这里就要用到上一节大数的加法了）。</p>
+<p><strong>例1：</strong> 以字符串的形式读入两个数字，编写一个函数计算它们的乘积，以字符串形式返回。</p>
+<p>数据范围： 读入的数字大小满足 0≤n≤10的1000次方</p>
+<p>要求：空间复杂度 O(n)，时间复杂度 O(n^2)</p>
+<p><strong>答案与解析：</strong> </p>
+<pre><code>class Solution &#123;
+public:
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     * 
+     * @param s string字符串 第一个整数
+     * @param t string字符串 第二个整数
+     * @return string字符串
+     */
+     string add(string s, string t) &#123;
+         if (s.size() == 0) return t;
+         if (t.size() == 0) return s;
+         int n = max(s.size(), t.size()) + 1, ind1 = s.size() - 1, ind2 = t.size() - 1, carry = 0;
+         string result(n, &#39;0&#39;);
+         for (int i = n - 1; i &gt;= 0; --i) &#123;
+             int x = ind1 &gt;= 0 ? s[ind1] - &#39;0&#39; : 0;
+             int y = ind2 &gt;= 0 ? t[ind2] - &#39;0&#39; : 0;
+             int sum = x + y + carry;
+             carry = sum / 10;
+             sum %= 10;
+             result[i] = sum + &#39;0&#39;;
+             --ind1;
+             --ind2;
+             &#125;
+             if (result[0] == &#39;0&#39;) return result.substr(1);
+             return result;
+             &#125;
+    //以上就是大数的加法运算，这里不做过多解释
+    string solve(string s, string t) &#123;
+        if (s == &quot;0&quot; || t == &quot;0&quot;) return &quot;0&quot;;//如果两数中有任意一个数为0；那么结果就是0
+        string result = &quot;0&quot;;
+        for (int i = t.size() - 1; i &gt;= 0; i--) &#123;//外层循环：目的在于取其中一个数的各个位数进行下一步的运算
+            string temp;//用于装载每个位数乘完另一个大数后的结果
+            int carry = 0;//代表进位数
+            for (int j = t.size() - 1; j &gt; i; j--) temp += &quot;0&quot;;//这里就是乘法运算的特点了，第一个数的第几位去乘另外一个数，那么相加时末尾就要空出几位（这里不妨用草稿纸笔画一下）
+            int b = t[i] - &#39;0&#39;;//取第一个数的每个位数
+            for (int j = s.size() - 1; j &gt;= 0; j--) &#123;//内层循环：目的在于取另外一个数的各个位数与第一个数的特定位数进行相乘
+                int a = s[j] - &#39;0&#39;;//取另外一个数的每个位数
+                int product = a * b + carry;
+                temp += product % 10 + &#39;0&#39;;//保存计算后的每位数
+                carry = product / 10;//得到新的进位数
+            &#125;
+            if (carry != 0)
+            &#123;
+                temp += carry+&#39;0&#39;;
+            &#125;//考虑到最高位还没有进位
+            reverse(temp.begin(), temp.end());//之前是反方向输出的结果，这里进行倒过来
+            result = add(result, temp);//执行大数相加操作，得到最终结果
+        &#125;
+        return result;
+    &#125;
+&#125;;
+</code></pre>
+
       
 
       
@@ -234,7 +293,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="大数加法"><a href="#大数加法" class="headerlink" title="大数加法"></a>大数加法</h1><p><strong>例1：</strong> 以字符串的形式读入两个数字，编写一个函数计算它们的和，以字符串形式返回。数据范围：len(s),len(t)≤100000，字符串仅由’0’~‘9’构成。要求：时间复杂度 O(n)。</p>
+        <h1 id="大数加法"><a href="#大数加法" class="headerlink" title="大数加法"></a>大数加法</h1><p><strong>例1：</strong> 以字符串的形式读入两个数字，编写一个函数计算它们的和，以字符串形式返回。</p>
+<p>数据范围：len(s),len(t)≤100000，字符串仅由’0’~‘9’构成。</p>
+<p>要求：时间复杂度 O(n)。</p>
 <p><strong>答案及解析：</strong></p>
 <p>&emsp;&emsp;大数的运算一个最基本的思想就是把的大数的每个位数放入数组中，进行每位数计算，每位数的计算结果再放入新的数组中，连起来作为最终结果。</p>
 <p>&emsp;&emsp;大数的加法这里很重要的一个点就是要定义一个进位数carry，每次都要考虑与进位数进行相加以及产生新的进位数。</p>
