@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2022/1 | Hexo</title>
+  <title>动态规划例题剖析 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2022/01/index.html">
+  <meta name="description" content="Coin Change题目描述 &amp;emsp;&amp;emsp;给出不同面额的硬币以及一个总金额。写一个方法来计算给出的总金额可以换取的最少的硬币数量。 如果已有硬币的任意组合均无法与总金额面额相等, 那么返回-1。 分析 一、莫入误区 &amp;emsp;&amp;emsp;很多人初看这道题就会以为是贪心算法类题目，在这里我们举个例子，假设硬币的面额分别为2、5、7，总金额为27，如果按照贪心算法，我们会先选择面额大的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态规划例题剖析">
+<meta property="og:url" content="http://example.com/2022/01/15/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%BE%8B%E9%A2%98%E5%89%96%E6%9E%90/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Coin Change题目描述 &amp;emsp;&amp;emsp;给出不同面额的硬币以及一个总金额。写一个方法来计算给出的总金额可以换取的最少的硬币数量。 如果已有硬币的任意组合均无法与总金额面额相等, 那么返回-1。 分析 一、莫入误区 &amp;emsp;&amp;emsp;很多人初看这道题就会以为是贪心算法类题目，在这里我们举个例子，假设硬币的面额分别为2、5、7，总金额为27，如果按照贪心算法，我们会先选择面额大的">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-01-15T02:08:10.000Z">
+<meta property="article:modified_time" content="2022-01-15T09:30:55.895Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -150,238 +154,190 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-动态规划例题剖析" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/15/CSS01/" class="archive-article-date">
-  	<time datetime="2022-01-15T08:03:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-15</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/15/CSS01/">CSS01</a>
+    <h1 class="article-title" itemprop="name">
+      动态规划例题剖析
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/15/CSS02/" class="archive-article-date">
-  	<time datetime="2022-01-15T08:00:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/15/CSS02/">CSS02</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/15/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%BE%8B%E9%A2%98%E5%89%96%E6%9E%90/" class="archive-article-date">
+        
+        <a href="/2022/01/15/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%BE%8B%E9%A2%98%E5%89%96%E6%9E%90/" class="archive-article-date">
   	<time datetime="2022-01-15T02:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-15</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/15/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%BE%8B%E9%A2%98%E5%89%96%E6%9E%90/">动态规划例题剖析</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Coin-Change"><a href="#Coin-Change" class="headerlink" title="Coin Change"></a>Coin Change</h1><p><strong>题目描述</strong></p>
+<p>&emsp;&emsp;给出不同面额的硬币以及一个总金额。写一个方法来计算给出的总金额可以换取的最少的硬币数量。 如果已有硬币的任意组合均无法与总金额面额相等, 那么返回-1。</p>
+<p><strong>分析</strong></p>
+<p>一、莫入误区</p>
+<p>&emsp;&emsp;很多人初看这道题就会以为是贪心算法类题目，在这里我们举个例子，假设硬币的面额分别为2、5、7，总金额为27，如果按照贪心算法，我们会先选择面额大的7，然后再选择5和2，你的结果将会是7+7+7+2+2+2，最少硬币数为6，然而正确答案为7+5+5+5+5，仅用了5个硬币。举其他例子，也会有这样的反例，因此这道题并不能用贪心算法来做，这是一道典型的求最值型动态规划题。</p>
+<p>二、动态规划四部曲</p>
+<p>1、确定状态</p>
+<p>&emsp;&emsp;状态在动态规划中的作用属于定海神针，简单的来说，解动态规划题的时候需要开辟一个数组，要理解数组的每个元素f[i]或者f[i][j]代表什么（类似于数学题中的X,Y,Z代表什么）。确定状态需要两个意识：<strong>最后一步、子问题</strong>。</p>
+<p>&emsp;&emsp;本题的最后一步：虽然我们不知道最优策略是什么，但是最优策略肯定是K枚硬币a1，a2，…ak面值加起来是27，所以一定有一枚<strong>最后</strong>的硬币：ak。除掉这枚硬币，前面的硬币的面值加起来是27-ak。</p>
+<p>&emsp;&emsp;<strong>关键点1</strong>：我们不关心前面的k-1枚硬币是怎么拼出27-ak的（无论有几种拼法），而且我们现在也不知道ak和k，但是我们确定前面的硬币拼出了27-ak。</p>
+<p>&emsp;&emsp;<strong>关键点2</strong>：因为是最优策略，所以拼出27-ak的硬币数一定最少，否则就不是最优策略了。</p>
+<p>&emsp;&emsp;本题的子问题由此而生：最少用多少枚硬币可以拼出27-ak。为了简化定义，我们设状态<strong>f(X)=最少用多少枚硬币拼出X</strong>。</p>
+<p>2、转移方程</p>
+<p>&emsp;&emsp;由于需要求最少的硬币数，所以我们可以列出递推式：**f(X)=min{f(X-a1)+1,f(X-a2)+1,…,f(X-ak)+1}**。</p>
+<p>&emsp;&emsp;其实想到这里，我们已经能写出递归函数解决这道题目了，只要加上一些递归出的条件：很明显只有当X&gt;ak时才能做f(X-ak)+1这步操作，再加上f(0)=0，我们便能得到递归函数(用之前的例子)：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">int f(int X)</span><br><span class="line">&#123;</span><br><span class="line">    if(X==0)return 0;</span><br><span class="line">    if(X&gt;=2)&#123;</span><br><span class="line">        res=Math.min(f(X-2)+1，res);</span><br><span class="line">    &#125;</span><br><span class="line">    if(X&gt;=5)&#123;</span><br><span class="line">        res=Math.min(f(X-5)+1,res);</span><br><span class="line">    &#125;</span><br><span class="line">    if(X&gt;=7)&#123;</span><br><span class="line">        res=Math.min(f(X-7)+1,res);</span><br><span class="line">    &#125;</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;递归函数的问题：递归算法的时间复杂度一般都是指数型的，原因是它做了很多的重复计算，效率比较低，怎么解决这个问题呢，我们就想能不能将<strong>每次计算的结果保留下来</strong>，类似于做一个备忘录的效果，并且<strong>改变计算顺序</strong>。</p>
+<p>3、初始化dp数组</p>
+<p>&emsp;&emsp;为了保留计算结果，我们需要开辟一个dp数组，并且需要根据不同的题目初始化这个数组，在本题中由于要求最小硬币数，所以我们可以将数组中的值初始化为正无穷。</p>
+<p>&emsp;&emsp;再考虑一些边界情况，如果X-ak&lt;0，即拼不出来，我们也令这些值为正无穷。</p>
+<p>4、计算顺序</p>
+<p>&emsp;&emsp;在动态规划类题目中尝尝需要我们反着计算，这道题就是如此，我们先从小的数开始计算，从1、2…一直算到给定的目标数，这样后面较大的数可以利用前面较小数的计算结果。</p>
+<p><strong>解答：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int coinChange(int[] A,int M) &#123;</span><br><span class="line">        int n=A.length;</span><br><span class="line">        int[] f=new int[M+1];</span><br><span class="line">        f[0]=0;</span><br><span class="line">        for(int i=1;i&lt;=M;i++)</span><br><span class="line">        &#123;//设置从小到大反着的计算顺序</span><br><span class="line">            f[i]=Integer.MAX_VALUE;//赋初值为无穷大</span><br><span class="line">            for(int j=0;j&lt;n;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                if(i&gt;=A[j]&amp;&amp;f[i-A[j]]!=Integer.MAX_VALUE&amp;&amp;f[i-A[j]]+1&lt;f[i])</span><br><span class="line">                //第一个条件：排除X-ak&lt;0的情况，也就是分析的时候说的边界情况；第二个条件：保证子问题得到过解决；第三个条件：有更好的解决方案，即使硬币数更少。</span><br><span class="line">                &#123;</span><br><span class="line">                    f[i]=f[i-A[j]]+1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(f[M]==Integer.MAX_VALUE) &#123;</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            return f[M];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>总结：</strong></p>
+<p>&emsp;&emsp;以上代码我们不难发现，动态规划很好得避免了重复计算，把时间复杂度从指数降到了n方，从而达到了算法题的规定。</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/01/15/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%BE%8B%E9%A2%98%E5%89%96%E6%9E%90/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/14/Swiper/" class="archive-article-date">
-  	<time datetime="2022-01-14T15:58:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-14</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2022/01/15/CSS02/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          CSS02
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/01/14/Swiper/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Swiper</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/14/Swiper/">Swiper</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/13/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%9703/" class="archive-article-date">
-  	<time datetime="2022-01-13T11:30:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/13/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%9703/">大数运算03</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/13/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%9702/" class="archive-article-date">
-  	<time datetime="2022-01-12T16:47:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/13/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%9702/">大数运算02</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/12/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%9701/" class="archive-article-date">
-  	<time datetime="2022-01-12T15:53:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/12/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%9701/">大数运算01</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/01/12/%E7%AE%97%E6%B3%95%E9%9A%8F%E6%83%B3/" class="archive-article-date">
-  	<time datetime="2022-01-12T14:32:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/12/%E7%AE%97%E6%B3%95%E9%9A%8F%E6%83%B3/">算法随想</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -404,8 +360,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

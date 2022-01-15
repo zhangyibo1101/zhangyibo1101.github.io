@@ -152,6 +152,297 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-CSS01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/15/CSS01/">CSS01</a>
+    </h1>
+  
+
+        
+        <a href="/2022/01/15/CSS01/" class="archive-article-date">
+  	<time datetime="2022-01-15T08:03:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="论inline-block你可能不知道的秘密"><a href="#论inline-block你可能不知道的秘密" class="headerlink" title="论inline-block你可能不知道的秘密"></a>论inline-block你可能不知道的秘密</h1><p>&emsp;&emsp;说到“display：inline-block”；想必大家都不陌生，把一个块级元素或者是行内元素变成一个行内块元素有很多优点，可以在设置的宽高的同时实现元素的并排布局。然而，你可能并没有发现行内块元素存在的两个小秘密，在某种程度上也可以说是小bug。</p>
+<h3 id="1、行内块元素之间的缝隙问题"><a href="#1、行内块元素之间的缝隙问题" class="headerlink" title="1、行内块元素之间的缝隙问题"></a>1、行内块元素之间的缝隙问题</h3><p>&emsp;&emsp;很多时候，你会发现行内块元素在并排布局的时候元素之间是会出现小缝隙的，这是由于你在书写HTML的时候打了换行产生的，怎么解决这个问题呢，最好的方法就是给这两个元素的父级元素添加“font-size：0；”这个样式，当然在书写HTML的时候不换行也是一种做法，但是这么做会影响阅读效果，不推荐。</p>
+<h3 id="2、行内块元素的对齐问题"><a href="#2、行内块元素的对齐问题" class="headerlink" title="2、行内块元素的对齐问题"></a>2、行内块元素的对齐问题</h3><p>&emsp;&emsp;这个问题可能是大多数人不怎么关注的问题，但是你有没有遇到过这种情况，当你给input标签设置宽高时，它总是与其他行内块元素无法正常对齐。<br>&emsp;&emsp;其实行内块元素的对齐方式有以下三种情况：1、二者内都没有文字：底部对齐；2、其中一者有文字：文字和另外一者底部对齐；3、二者内都有文字：文字和文字对齐。所以上面提到的input标签之所以设置高度后和其他行内块元素对齐时那么奇怪就是因为input标签是默认有垂直居中文字的行内块元素。</p>
+<h2 id="那么问题来了，为什么不用float？"><a href="#那么问题来了，为什么不用float？" class="headerlink" title="那么问题来了，为什么不用float？"></a>那么问题来了，为什么不用float？</h2><p>&emsp;&emsp;实际上，浮动确实能解决行内块元素存在的这两个问题，但是浮动的发明初衷是为了解决文字环绕问题的，为了不再被过多得滥用，我们尽量让它发挥他真正的用途，此外，用float进行布局很肯能会导致布局混乱、元素被遮盖等问题，因此我们还是要慎用float。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/01/15/CSS01/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-CSS02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/15/CSS02/">CSS02</a>
+    </h1>
+  
+
+        
+        <a href="/2022/01/15/CSS02/" class="archive-article-date">
+  	<time datetime="2022-01-15T08:00:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h1><h2 id="一、什么是BFC？"><a href="#一、什么是BFC？" class="headerlink" title="一、什么是BFC？"></a>一、什么是BFC？</h2><p>&emsp;&emsp;BFC的全称是Block Formatting Contexts，即块级格式化上下文，它属于定位普通流。具有 BFC 特性的元素可以看作是隔离了的独立容器，容器里面的元素不会在布局上影响到外面的元素，并且 BFC 具有普通容器所没有的一些特性。通俗一点来讲，可以把 BFC 理解为一个<strong>封闭的大箱子</strong>，箱子内部的元素无论如何翻江倒海，都不会影响到外部。</p>
+<h2 id="二、怎么开启BFC？"><a href="#二、怎么开启BFC？" class="headerlink" title="二、怎么开启BFC？"></a>二、怎么开启BFC？</h2><p>只要元素满足下面任一条件即可触发 BFC 特性：</p>
+<p>1、body 根元素</p>
+<p>2、浮动元素：float 除 none 以外的值</p>
+<p>3、绝对定位元素：position (absolute、fixed)</p>
+<p>4、display 为 inline-block、table-cells、flex</p>
+<p>5、overflow 除了 visible 以外的值 (hidden、auto、scroll)</p>
+<p>6、display：flow-root；</p>
+<h2 id="三、BFC的实际应用"><a href="#三、BFC的实际应用" class="headerlink" title="三、BFC的实际应用"></a>三、BFC的实际应用</h2><p>1、解决上下两个div外边距重叠问题</p>
+<p>2、清除浮动，解决拥有浮动元素的div的高度塌陷问题：浮动元素不属于文档中的普通流，当一个元素浮动之后，不会影响到块级元素的布局而只会影响内联元素（通常是文本）的排列，文档中的普通流就会表现得和浮动框不存在一样，当浮动框高度超出包含框的时候，也就会出现包含框不会自动伸高来闭合浮动元素（“高度塌陷”现象）,正是因为浮动的这种特性，导致本属于普通流中的元素浮动之后，包含框内部由于不存在其他普通流元素了，也就表现出高度为0（高度塌陷）。在实际布局中，往往这并不是我们所希望的，所以需要闭合浮动元素，使其包含框表现出正常的高度。</p>
+<p>3、解决第一个子元素设置margin-top父元素会跟着移动问题</p>
+<p>4、解决被浮动元素遮盖的问题：开启BFC的元素，子元素和父元素的外边距不会重叠</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/01/15/CSS02/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-动态规划例题剖析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/15/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%BE%8B%E9%A2%98%E5%89%96%E6%9E%90/">动态规划例题剖析</a>
+    </h1>
+  
+
+        
+        <a href="/2022/01/15/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%BE%8B%E9%A2%98%E5%89%96%E6%9E%90/" class="archive-article-date">
+  	<time datetime="2022-01-15T02:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Coin-Change"><a href="#Coin-Change" class="headerlink" title="Coin Change"></a>Coin Change</h1><p><strong>题目描述</strong></p>
+<p>&emsp;&emsp;给出不同面额的硬币以及一个总金额。写一个方法来计算给出的总金额可以换取的最少的硬币数量。 如果已有硬币的任意组合均无法与总金额面额相等, 那么返回-1。</p>
+<p><strong>分析</strong></p>
+<p>一、莫入误区</p>
+<p>&emsp;&emsp;很多人初看这道题就会以为是贪心算法类题目，在这里我们举个例子，假设硬币的面额分别为2、5、7，总金额为27，如果按照贪心算法，我们会先选择面额大的7，然后再选择5和2，你的结果将会是7+7+7+2+2+2，最少硬币数为6，然而正确答案为7+5+5+5+5，仅用了5个硬币。举其他例子，也会有这样的反例，因此这道题并不能用贪心算法来做，这是一道典型的求最值型动态规划题。</p>
+<p>二、动态规划四部曲</p>
+<p>1、确定状态</p>
+<p>&emsp;&emsp;状态在动态规划中的作用属于定海神针，简单的来说，解动态规划题的时候需要开辟一个数组，要理解数组的每个元素f[i]或者f[i][j]代表什么（类似于数学题中的X,Y,Z代表什么）。确定状态需要两个意识：<strong>最后一步、子问题</strong>。</p>
+<p>&emsp;&emsp;本题的最后一步：虽然我们不知道最优策略是什么，但是最优策略肯定是K枚硬币a1，a2，…ak面值加起来是27，所以一定有一枚<strong>最后</strong>的硬币：ak。除掉这枚硬币，前面的硬币的面值加起来是27-ak。</p>
+<p>&emsp;&emsp;<strong>关键点1</strong>：我们不关心前面的k-1枚硬币是怎么拼出27-ak的（无论有几种拼法），而且我们现在也不知道ak和k，但是我们确定前面的硬币拼出了27-ak。</p>
+<p>&emsp;&emsp;<strong>关键点2</strong>：因为是最优策略，所以拼出27-ak的硬币数一定最少，否则就不是最优策略了。</p>
+<p>&emsp;&emsp;本题的子问题由此而生：最少用多少枚硬币可以拼出27-ak。为了简化定义，我们设状态<strong>f(X)=最少用多少枚硬币拼出X</strong>。</p>
+<p>2、转移方程</p>
+<p>&emsp;&emsp;由于需要求最少的硬币数，所以我们可以列出递推式：**f(X)=min{f(X-a1)+1,f(X-a2)+1,…,f(X-ak)+1}**。</p>
+<p>&emsp;&emsp;其实想到这里，我们已经能写出递归函数解决这道题目了，只要加上一些递归出的条件：很明显只有当X&gt;ak时才能做f(X-ak)+1这步操作，再加上f(0)=0，我们便能得到递归函数(用之前的例子)：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">int f(int X)</span><br><span class="line">&#123;</span><br><span class="line">    if(X==0)return 0;</span><br><span class="line">    if(X&gt;=2)&#123;</span><br><span class="line">        res=Math.min(f(X-2)+1，res);</span><br><span class="line">    &#125;</span><br><span class="line">    if(X&gt;=5)&#123;</span><br><span class="line">        res=Math.min(f(X-5)+1,res);</span><br><span class="line">    &#125;</span><br><span class="line">    if(X&gt;=7)&#123;</span><br><span class="line">        res=Math.min(f(X-7)+1,res);</span><br><span class="line">    &#125;</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;递归函数的问题：递归算法的时间复杂度一般都是指数型的，原因是它做了很多的重复计算，效率比较低，怎么解决这个问题呢，我们就想能不能将<strong>每次计算的结果保留下来</strong>，类似于做一个备忘录的效果，并且<strong>改变计算顺序</strong>。</p>
+<p>3、初始化dp数组</p>
+<p>&emsp;&emsp;为了保留计算结果，我们需要开辟一个dp数组，并且需要根据不同的题目初始化这个数组，在本题中由于要求最小硬币数，所以我们可以将数组中的值初始化为正无穷。</p>
+<p>&emsp;&emsp;再考虑一些边界情况，如果X-ak&lt;0，即拼不出来，我们也令这些值为正无穷。</p>
+<p>4、计算顺序</p>
+<p>&emsp;&emsp;在动态规划类题目中尝尝需要我们反着计算，这道题就是如此，我们先从小的数开始计算，从1、2…一直算到给定的目标数，这样后面较大的数可以利用前面较小数的计算结果。</p>
+<p><strong>解答：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int coinChange(int[] A,int M) &#123;</span><br><span class="line">        int n=A.length;</span><br><span class="line">        int[] f=new int[M+1];</span><br><span class="line">        f[0]=0;</span><br><span class="line">        for(int i=1;i&lt;=M;i++)</span><br><span class="line">        &#123;//设置从小到大反着的计算顺序</span><br><span class="line">            f[i]=Integer.MAX_VALUE;//赋初值为无穷大</span><br><span class="line">            for(int j=0;j&lt;n;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                if(i&gt;=A[j]&amp;&amp;f[i-A[j]]!=Integer.MAX_VALUE&amp;&amp;f[i-A[j]]+1&lt;f[i])</span><br><span class="line">                //第一个条件：排除X-ak&lt;0的情况，也就是分析的时候说的边界情况；第二个条件：保证子问题得到过解决；第三个条件：有更好的解决方案，即使硬币数更少。</span><br><span class="line">                &#123;</span><br><span class="line">                    f[i]=f[i-A[j]]+1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(f[M]==Integer.MAX_VALUE) &#123;</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            return f[M];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>总结：</strong></p>
+<p>&emsp;&emsp;以上代码我们不难发现，动态规划很好得避免了重复计算，把时间复杂度从指数降到了n方，从而达到了算法题的规定。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/01/15/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%BE%8B%E9%A2%98%E5%89%96%E6%9E%90/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Swiper" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/14/Swiper/">Swiper</a>
+    </h1>
+  
+
+        
+        <a href="/2022/01/14/Swiper/" class="archive-article-date">
+  	<time datetime="2022-01-14T15:58:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="轮播图助手——swiper"><a href="#轮播图助手——swiper" class="headerlink" title="轮播图助手——swiper"></a>轮播图助手——swiper</h1><h2 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h2><p>1、swiper的初始化要放在swiper.js后面</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/01/14/Swiper/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-大数运算03" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -449,81 +740,6 @@ public:
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/01/12/%E7%AE%97%E6%B3%95%E9%9A%8F%E6%83%B3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/01/12/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2022/01/12/hello-world/" class="archive-article-date">
-  	<time datetime="2022-01-12T08:09:43.305Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/01/12/hello-world/">展开全文 >></a>
         </p>
       
 
