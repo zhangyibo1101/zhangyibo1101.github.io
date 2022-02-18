@@ -152,6 +152,144 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-innerHTML的秘密" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/02/18/innerHTML%E7%9A%84%E7%A7%98%E5%AF%86/">innerHTML的秘密</a>
+    </h1>
+  
+
+        
+        <a href="/2022/02/18/innerHTML%E7%9A%84%E7%A7%98%E5%AF%86/" class="archive-article-date">
+  	<time datetime="2022-02-17T16:28:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="innerHTML易错"><a href="#innerHTML易错" class="headerlink" title="innerHTML易错"></a>innerHTML易错</h1><h4 id="emsp-emsp-在一次用原生js写的项目中拿到后端的数据用mapAPI对页面进行渲染的时候发现明明是一模一样代码，都能选中特点的节点为之绑定单击响应事件，只是放的位置不同，怎么前者就绑定不成功呢。"><a href="#emsp-emsp-在一次用原生js写的项目中拿到后端的数据用mapAPI对页面进行渲染的时候发现明明是一模一样代码，都能选中特点的节点为之绑定单击响应事件，只是放的位置不同，怎么前者就绑定不成功呢。" class="headerlink" title="&emsp;&emsp;在一次用原生js写的项目中拿到后端的数据用mapAPI对页面进行渲染的时候发现明明是一模一样代码，都能选中特点的节点为之绑定单击响应事件，只是放的位置不同，怎么前者就绑定不成功呢。"></a>&emsp;&emsp;在一次用原生js写的项目中拿到后端的数据用mapAPI对页面进行渲染的时候发现明明是一模一样代码，都能选中特点的节点为之绑定单击响应事件，只是放的位置不同，怎么前者就绑定不成功呢。</h4><p><img src="https://s2.loli.net/2022/02/18/ZaKbJfmB6CUI3eh.png" alt="img1"></p>
+<h4 id="emsp-emsp-更奇怪的是二者的’console-log-commend-index-’在控制台打印出来的内容是一样的，但是无意间发现后者鼠标放在输出的内容上，在网页上会出现标记（如图）。"><a href="#emsp-emsp-更奇怪的是二者的’console-log-commend-index-’在控制台打印出来的内容是一样的，但是无意间发现后者鼠标放在输出的内容上，在网页上会出现标记（如图）。" class="headerlink" title="&emsp;&emsp;更奇怪的是二者的’console.log(commend[index])’在控制台打印出来的内容是一样的，但是无意间发现后者鼠标放在输出的内容上，在网页上会出现标记（如图）。"></a>&emsp;&emsp;更奇怪的是二者的’console.log(commend[index])’在控制台打印出来的内容是一样的，但是无意间发现后者鼠标放在输出的内容上，在网页上会出现标记（如图）。</h4><p><img src="https://s2.loli.net/2022/02/18/2UCyzRqxZw8QLjF.png" alt="img2"></p>
+<h4 id="emsp-emsp-这不是元素节点高亮吗-而前者就像纯文本那样没有反应，于是便想到可能是节点没有绑定成功，能获取但无法绑定？这怎么可能呢，百思不得其解，就去MDN上查了一下innerHTML，果然发现了问题！"><a href="#emsp-emsp-这不是元素节点高亮吗-而前者就像纯文本那样没有反应，于是便想到可能是节点没有绑定成功，能获取但无法绑定？这怎么可能呢，百思不得其解，就去MDN上查了一下innerHTML，果然发现了问题！" class="headerlink" title="&emsp;&emsp;这不是元素节点高亮吗,而前者就像纯文本那样没有反应，于是便想到可能是节点没有绑定成功，能获取但无法绑定？这怎么可能呢，百思不得其解，就去MDN上查了一下innerHTML，果然发现了问题！"></a>&emsp;&emsp;这不是元素节点高亮吗,而前者就像纯文本那样没有反应，于是便想到可能是节点没有绑定成功，能获取但无法绑定？这怎么可能呢，百思不得其解，就去MDN上查了一下innerHTML，果然发现了问题！</h4><p><img src="https://s2.loli.net/2022/02/18/9c3QqXzWE1RrGwM.png"></p>
+<h4 id="emsp-emsp-原来innerHTML每渲染一次就会先删除原先的内容那么之前绑定过点击响应事件的元素节点不都已经被删除了吗，原来如此！！！"><a href="#emsp-emsp-原来innerHTML每渲染一次就会先删除原先的内容那么之前绑定过点击响应事件的元素节点不都已经被删除了吗，原来如此！！！" class="headerlink" title="&emsp;&emsp;原来innerHTML每渲染一次就会先删除原先的内容那么之前绑定过点击响应事件的元素节点不都已经被删除了吗，原来如此！！！"></a>&emsp;&emsp;原来innerHTML每渲染一次就会先删除原先的内容那么之前绑定过点击响应事件的元素节点不都已经被删除了吗，原来如此！！！</h4>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/02/18/innerHTML%E7%9A%84%E7%A7%98%E5%AF%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-蓝桥杯真题01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/23/%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%9C%9F%E9%A2%9801/">蓝桥杯真题01</a>
+    </h1>
+  
+
+        
+        <a href="/2022/01/23/%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%9C%9F%E9%A2%9801/" class="archive-article-date">
+  	<time datetime="2022-01-23T12:53:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>题目描述：</strong></p>
+<p>&emsp;&emsp;小蓝正在学习一门神奇的语言，这门语言中的单词都是由小写英文字母组 成，有些单词很长，远远超过正常英文单词的长度。小蓝学了很长时间也记不住一些单词，他准备不再完全记忆这些单词，而是根据单词中哪个字母出现得最多来分辨单词。</p>
+<p>&emsp;&emsp;现在，请你帮助小蓝，给了一个单词后，帮助他找到出现最多的字母和这 个字母出现的次数。</p>
+<p><strong>输入描述：</strong></p>
+<p>输入一行包含一个单词，单词只由小写英文字母组成。</p>
+<p>对于所有的评测用例，输入的单词长度不超过 1000。</p>
+<p><strong>输出描述：</strong></p>
+<p>输出两行，第一行包含一个英文字母，表示单词中出现得最多的字母是哪 个。如果有多个字母出现的次数相等，输出字典序最小的那个。</p>
+<p>第二行包含一个整数，表示出现得最多的那个字母在单词中出现的次数。</p>
+<p><strong>分析：</strong></p>
+<p>&emsp;&emsp;这是一道字符串的暴力求解类题目，我的做法时间复杂度为O(n^2)，源代码在GitHub库中有，这里总结了两个值得注意的地方：1、对于循环外的变量如果作为判断（bool类型），在每次循环后记得恢复初值。2、作为竞赛进行调试的时候，要挑选多个最简单的错例，记得考虑边界情况。下面给出一种时间复杂度仅为O(n)的解法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">  string a;</span><br><span class="line">  cin&gt;&gt;a;int max=0;</span><br><span class="line">  int c[26];</span><br><span class="line">  int i;int b=97;char x;</span><br><span class="line">  for(i=0;i&lt;a.length();++i)</span><br><span class="line">  &#123;</span><br><span class="line">    ++c[a[i]-97];//利用ASK码将字符转化为数组的特定的下标，这样就省了开辟两个数组，一个用来放字符，一个用来放该字符出现的次数。也是这种解法的绝妙之处；</span><br><span class="line">  &#125;</span><br><span class="line">  for(i=0;i&lt;26;++i)</span><br><span class="line">  &#123;</span><br><span class="line">    if(c[i]&gt;max)&#123;</span><br><span class="line">      max=c[i];</span><br><span class="line">      x=i+97;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  cout&lt;&lt;x&lt;&lt;endl&lt;&lt;max&lt;&lt;endl;</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/01/23/%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%9C%9F%E9%A2%9801/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-CSS01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -351,69 +489,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/01/15/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%BE%8B%E9%A2%98%E5%89%96%E6%9E%90/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Swiper" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/01/14/Swiper/">Swiper</a>
-    </h1>
-  
-
-        
-        <a href="/2022/01/14/Swiper/" class="archive-article-date">
-  	<time datetime="2022-01-14T15:58:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="轮播图助手——swiper"><a href="#轮播图助手——swiper" class="headerlink" title="轮播图助手——swiper"></a>轮播图助手——swiper</h1><h2 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h2><p>1、swiper的初始化要放在swiper.js后面</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/01/14/Swiper/">展开全文 >></a>
         </p>
       
 
