@@ -152,6 +152,82 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-DFS" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/10/DFS/">DFS</a>
+    </h1>
+  
+
+        
+        <a href="/2022/03/10/DFS/" class="archive-article-date">
+  	<time datetime="2022-03-10T07:15:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="深度优先搜索"><a href="#深度优先搜索" class="headerlink" title="深度优先搜索"></a>深度优先搜索</h1><h2 id="解题模板："><a href="#解题模板：" class="headerlink" title="解题模板："></a>解题模板：</h2><p><img src="https://s2.loli.net/2022/03/11/b6mqraOg9SCZMl5.png" alt="dfs"></p>
+<h2 id="应用案例："><a href="#应用案例：" class="headerlink" title="应用案例："></a>应用案例：</h2><p>1、全排列问题</p>
+<p>例：按照字典序输出自然数1到n所有不重复的排列，要求所产生的任意一数字序列中不允许出现重复数字。</p>
+<p>常规做法：用C++内置排序算法：<br> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> #include &lt;algorithm&gt;</span><br><span class="line">bool next_permutation(iterator start,iterator end)</span><br></pre></td></tr></table></figure><br>当当前序列不存在下一个排列时，函数返回false，否则返回true。</p>
+<p>具体实现方式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main() &#123;</span><br><span class="line">	int n;</span><br><span class="line">	cin &gt;&gt; n;</span><br><span class="line">	int a[101];</span><br><span class="line">	for (int i = 1; i &lt;=n; i++) &#123;</span><br><span class="line">		a[i] = i;</span><br><span class="line">	&#125;</span><br><span class="line">	do &#123;</span><br><span class="line">		for (int i = 1; i &lt;=n; i++) &#123;</span><br><span class="line">			cout &lt;&lt; a[i];</span><br><span class="line">		&#125;</span><br><span class="line">		cout &lt;&lt; endl;</span><br><span class="line">	&#125; while (next_permutation(a + 1, a + n + 1));</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>若改成dfs算法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int n;</span><br><span class="line">int st[101];</span><br><span class="line">int ans[101];</span><br><span class="line">void dfs(int x) &#123;</span><br><span class="line">	if (x &gt; n) &#123;</span><br><span class="line">		for (int i = 1; i &lt;=n; i++) &#123;</span><br><span class="line">			cout &lt;&lt; ans[i];</span><br><span class="line">		&#125;</span><br><span class="line">		cout &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	for (int i = 1; i &lt;=n; i++) &#123;</span><br><span class="line">		if (st[i] == 0) &#123;</span><br><span class="line">			st[i] = 1;</span><br><span class="line">			ans[x] = i;</span><br><span class="line">			dfs(x + 1);</span><br><span class="line">			st[i] = 0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">	memset(st, 0, sizeof(st));</span><br><span class="line">	cin &gt;&gt; n;</span><br><span class="line">	dfs(1);</span><br><span class="line">	return 0;</span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;当然上半部分作为枚举出来的各种情况可以被使用来完成当前题目要求，例如有这么一道题：输入一个整数，将其改为带分数的形式，并且满足特征：带分数中数字1-9分别并且只出现一次，统计所有表示方法；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int n;</span><br><span class="line">int st[101];</span><br><span class="line">int ans[101];</span><br><span class="line">int cnt = 0;</span><br><span class="line">int cal(int m, int n) &#123;</span><br><span class="line">	int x = 0;</span><br><span class="line">	for (int i = m; i &lt;= n; i++) &#123;</span><br><span class="line">		x *= 10;</span><br><span class="line">		x += ans[i];</span><br><span class="line">	&#125;</span><br><span class="line">	return x;</span><br><span class="line">&#125;</span><br><span class="line">void dfs(int x) &#123;</span><br><span class="line">	if (x &gt; 9) &#123;</span><br><span class="line">		for (int i = 1; i &lt;= 7; i++) &#123;</span><br><span class="line">			for (int j = i + 1; j &lt;= 8;j++) &#123;</span><br><span class="line">					int a = cal(1, i);</span><br><span class="line">					int b = cal(i + 1, j);</span><br><span class="line">					int c = cal(j + 1, 9);</span><br><span class="line">					if (n * c == a * c + b) &#123;</span><br><span class="line">						cnt++;</span><br><span class="line">					&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	for (int i = 1; i &lt;=9; i++) &#123;</span><br><span class="line">		if (st[i] == 0) &#123;</span><br><span class="line">			st[i] = 1;</span><br><span class="line">			ans[x] = i;</span><br><span class="line">			dfs(x + 1);</span><br><span class="line">			st[i] = 0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main() &#123;</span><br><span class="line">	memset(st, 0, sizeof(st));</span><br><span class="line">	cin &gt;&gt; n;</span><br><span class="line">	dfs(1);</span><br><span class="line">	cout &lt;&lt; cnt &lt;&lt; endl;</span><br><span class="line">	return 0;</span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、n皇后问题</p>
+<p>&emsp;&emsp;n个皇后放在n*n的国际象棋棋盘上，使得皇后不能互相攻击到，即任意两个皇后都不能处于同一行、同一列或同一斜线上。现给定整数n，输出所有所有满足条件的棋子摆法。输出的每一行中有皇后的位置用”·”表示，皇后的位置用”Q”表示。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int n;</span><br><span class="line">int st[11];</span><br><span class="line">int stx[11];</span><br><span class="line">int stfx[11];</span><br><span class="line">int ans[50][50];</span><br><span class="line">void dfs(int x) &#123;</span><br><span class="line">	if (x &gt; n) &#123;</span><br><span class="line">		for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">			for (int j = 1; j &lt;= n; j++) &#123;</span><br><span class="line">				if (ans[i][j] == 1)cout &lt;&lt; &quot;Q&quot;;</span><br><span class="line">				else cout &lt;&lt; &quot;·&quot;;</span><br><span class="line">			&#125;</span><br><span class="line">			cout &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">		cout &lt;&lt; endl;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">		if (st[i] == 0 &amp;&amp; stx[x - i + 10] == 0 &amp;&amp; stfx[x + i + 10] == 0) &#123;</span><br><span class="line">			st[i] = 1;</span><br><span class="line">			stx[x - i + 10] = 1;</span><br><span class="line">			stfx[x + i + 10] = 1;</span><br><span class="line">			ans[x][i] = 1;</span><br><span class="line">			dfs(x + 1);</span><br><span class="line">			ans[x][i] = 0;</span><br><span class="line">			st[i] = 0;</span><br><span class="line">			stx[x - i + 10] = 0;</span><br><span class="line">			stfx[x + i + 10] = 0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	cin &gt;&gt; n;</span><br><span class="line">	memset(st, 0, sizeof(st));</span><br><span class="line">	memset(stx, 0, sizeof(stx));</span><br><span class="line">	memset(stfx, 0, sizeof(stfx));</span><br><span class="line">	memset(ans, 0, sizeof(ans));</span><br><span class="line">	dfs(1);</span><br><span class="line">	return 0;</span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这里要注意，每次清理上一次枚举的空间时要清理干净，如果不确定哪些空间是一定要清理的，不妨所有的空间全部清理，即全部置0。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/03/10/DFS/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-innerHTML的秘密" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
