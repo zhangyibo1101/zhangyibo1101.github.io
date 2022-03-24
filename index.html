@@ -152,6 +152,152 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-其他动态规划问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/23/%E5%85%B6%E4%BB%96%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98/">其他动态规划问题</a>
+    </h1>
+  
+
+        
+        <a href="/2022/03/23/%E5%85%B6%E4%BB%96%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2022-03-23T05:27:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="打家劫舍、LIS、LCS"><a href="#打家劫舍、LIS、LCS" class="headerlink" title="打家劫舍、LIS、LCS"></a>打家劫舍、LIS、LCS</h1><h2 id="一、打家劫舍"><a href="#一、打家劫舍" class="headerlink" title="一、打家劫舍"></a>一、打家劫舍</h2><p><strong>题目描述</strong>：你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。给定一个代表每个房屋存放金额的非负整数数组，计算你在不触动警报装置的情况下，能够偷窃到的最高金额。</p>
+<p><strong>分析</strong>：抽象出子问题：<br><img src="https://s2.loli.net/2022/03/24/NCw3tySHh5r6X1i.png"><br>写出状态转移方程：dp[i]=max(dp[i-1],dp[i-2]+nums[i])<br>代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int rob(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        if(!nums.size())return 0;</span><br><span class="line">        if(nums.size()==1)return nums[0];</span><br><span class="line">       vector&lt;int&gt; dp(nums.size());</span><br><span class="line">       dp[0]=nums[0];</span><br><span class="line">       dp[1]=max(nums[1],nums[0]);</span><br><span class="line">     for(int i=2;i&lt;nums.size();i++)&#123; </span><br><span class="line">       dp[i]=max(dp[i-2]+nums[i],dp[i-1]);</span><br><span class="line">     &#125;</span><br><span class="line">    return dp[nums.size()-1];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>问题升级：假设所有的房子是收尾相连的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">private:</span><br><span class="line">      vector&lt;int&gt; dp;</span><br><span class="line">public:</span><br><span class="line">    int rob(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        if(!nums.size())return 0;</span><br><span class="line">        if(nums.size()==1)return nums[0];</span><br><span class="line">        if(nums.size()==2)return max(nums[0],nums[1]);</span><br><span class="line">        dp.resize(nums.size());</span><br><span class="line">        int res=0;  </span><br><span class="line">        res=max(robwho(nums,0,nums.size()-2),robwho(nums,1,nums.size()-1));</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    int robwho(vector&lt;int&gt;&amp; nums,int n,int m)&#123; </span><br><span class="line">        dp[n]=nums[n];</span><br><span class="line">        dp[n+1]=max(nums[n],nums[n+1]);        </span><br><span class="line">        for(int i=n+2;i&lt;=m;i++)&#123;</span><br><span class="line">            dp[i]=max(dp[(i-2)]+nums[i],dp[i-1]);</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[m];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="二、LIS"><a href="#二、LIS" class="headerlink" title="二、LIS"></a>二、LIS</h2><p><strong>题目描述</strong>：求一串整形数组的最长非降子序列。</p>
+<p><strong>分析</strong>：假设dp[i] = j，i表示取序列的前i个数，j表示这前i个数字的最长非降序列的长度。dp[i] = max{ 1,  dp[j]+1} ,且满足当i &gt; j时，A[i] &gt;= A[j]。<br>代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int maxn = 100;</span><br><span class="line">int A[N], dp[N], n;	// 序列和, dp数组, 数字总数</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">  cin&gt;&gt;n;</span><br><span class="line">  for(int i=1; i &lt;= n; i++) &#123;</span><br><span class="line">    cin&gt;&gt;A[i];</span><br><span class="line">  &#125;	// 从 1 ～ N 编号</span><br><span class="line">  int ans = -1;	// 记录最大的 dp[i]</span><br><span class="line">  for(int i = 1; i &lt; n; i++) &#123;</span><br><span class="line">    dp[i] = 1;	// 至少能够自身成为一条 LIS</span><br><span class="line">    for(int j = 1; j &lt; i; j++)&#123;	// 只需要递归到小于 i</span><br><span class="line">      // 如果不比之前的小，而且新形成的子序列更大，则接到这个人后面来</span><br><span class="line">      if(A[i] &gt;= A[j]) &#123;</span><br><span class="line">        dp[i] = max(dp[i],dp[j]+1);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ans = max(ans, dp[i]);	// 确定当前结束的最长子序列的长度之后，比较</span><br><span class="line">  &#125;</span><br><span class="line">  cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="三、LCS"><a href="#三、LCS" class="headerlink" title="三、LCS"></a>三、LCS</h2><p><strong>题目描述</strong>：求两个字符串的最长公共子序列。</p>
+<p><strong>分析</strong>：同理先分析子问题：<br><img src="https://s2.loli.net/2022/03/24/FVlKvoT7N13EgZa.png"><br>代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">void lcs(string s1, string s2)</span><br><span class="line">&#123;</span><br><span class="line">    for(i=1; i&lt;=s1.length(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        for(j=1; j&lt;=s2.length(); j++)</span><br><span class="line">        &#123;</span><br><span class="line">          dp[i][j]=max(dp[i-1][j],dp[i][j-1]);</span><br><span class="line">          if(s1[i-1]==s2[j-1])&#123;</span><br><span class="line">              dp[i][j]=max(dp[i][j],dp[i-1][j-1]+1);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/03/23/%E5%85%B6%E4%BB%96%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-三种背包问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/15/%E4%B8%89%E7%A7%8D%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/">三种背包问题</a>
+    </h1>
+  
+
+        
+        <a href="/2022/03/15/%E4%B8%89%E7%A7%8D%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2022-03-15T10:54:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="动态规划之三种背包问题"><a href="#动态规划之三种背包问题" class="headerlink" title="动态规划之三种背包问题"></a>动态规划之三种背包问题</h1><h2 id="一、01背包"><a href="#一、01背包" class="headerlink" title="一、01背包"></a>一、01背包</h2><p><strong>题目介绍</strong>：<br>有 N 件物品和一个容量为 V 的背包，每件物品有各自的价值且只能被选择一次，要求在有限的背包容量下，装入的物品总价值最大。</p>
+<p><strong>解析</strong>：<br>首先听名字为什么叫01背包问题呢，就是指每件物品都有两种状态：选择和不选择，所以如果采用暴力搜索，就是将所有的情况枚举出来一一比较。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int v[500];    // 体积</span><br><span class="line">int w[500];    // 价值 </span><br><span class="line">int volume[500];</span><br><span class="line">int value[500];</span><br><span class="line">int res = 0;</span><br><span class="line">int n, m;</span><br><span class="line">void bs(int k) &#123;</span><br><span class="line">    if (k &gt; n) &#123;</span><br><span class="line">        int vol = 0;</span><br><span class="line">        int val = 0;</span><br><span class="line">        for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">            vol += volume[i];</span><br><span class="line">            val += value[i];</span><br><span class="line">        &#125;</span><br><span class="line">        if (vol &lt;= m &amp;&amp; val &gt; res) &#123;</span><br><span class="line">            res = val;</span><br><span class="line">        &#125;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i = 0; i &lt;= 1; i++) &#123;</span><br><span class="line">        volume[k] = v[k] * i;</span><br><span class="line">        value[k] = w[k] * i;</span><br><span class="line">        bs(k + 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">        cin &gt;&gt; v[i] &gt;&gt; w[i];</span><br><span class="line">    &#125;</span><br><span class="line">    bs(1);</span><br><span class="line">    cout &lt;&lt; res &lt;&lt; endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>但这样的算法时间复杂度为2的n次方，显然会超时，应此应当采用动态规划的解法。</p>
+<p>动态规划的解法有两种思路，开辟二维数组和一维数组都能做，首先来讲最基本的二维数组法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int v[500];    // 体积</span><br><span class="line">int w[500];    // 价值 </span><br><span class="line">int dp[500][500];  // f[i][j], j体积下前i个物品的最大价值 </span><br><span class="line">int main() </span><br><span class="line">&#123;</span><br><span class="line">    int n, m;   </span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    for(int i = 1; i &lt;= n; i++) </span><br><span class="line">        cin &gt;&gt; v[i] &gt;&gt; w[i];</span><br><span class="line">    for(int i = 1; i &lt;= n; i++) </span><br><span class="line">        for(int j = 1; j &lt;= m; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            //  当前背包容量装不进第i个物品，则价值等于前i-1个物品</span><br><span class="line">            if(j &lt; v[i]) </span><br><span class="line">                dp[i][j] = dp[i - 1][j];</span><br><span class="line">            // 能装，需进行决策是否选择第i个物品</span><br><span class="line">            else    </span><br><span class="line">                dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - v[i]] + w[i]);</span><br><span class="line">        &#125;           </span><br><span class="line">    cout &lt;&lt; dp[n][m] &lt;&lt; endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于二维数组可以记录所有状态(前i个物品*j体积)下的最大价值，应此可以采用正序更新状态，但是如果将其转化为一维数组，正序更新状态可能会出现问题。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int v[500];    // 体积</span><br><span class="line">int w[500];    // 价值 </span><br><span class="line">int dp[500];  // dp[j], j体积下的最大价值 </span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int n, m;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    for (int i = 1; i &lt;= n; i++)</span><br><span class="line">        cin &gt;&gt; v[i] &gt;&gt; w[i];</span><br><span class="line">    for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">        for (int j = m; j &gt;= v[i]; j--)</span><br><span class="line">            dp[j] = max(dp[j], dp[j - v[i]] + w[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; dp[m] &lt;&lt; endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是为什么呢，其实一维数组正序在更新状态时，即在<code>dp[j] = max(dp[j], dp[j - v[i]] + w[i])</code>这一步，dp[j-v[i]]可能是前i-1个物品的状态，也可能是前i个物品的状态，如果是前i个物品的状态，更新就出问题了。因为依照01背包更新状态的原则，应当斜线更新状态。</p>
+<h2 id="二、完全背包"><a href="#二、完全背包" class="headerlink" title="二、完全背包"></a>二、完全背包</h2><p><strong>题目介绍</strong>：<br>有 N 件物品和一个容量为 V 的背包，每件物品有各自的价值且可以被选择多次，要求在有限的背包容量下，装入的物品总价值最大。</p>
+<p><strong>解析</strong>：<br>不难发现，完全背包问题和01背包问题的区别仅仅在于物品可以放很多次，所以我们直接上代码。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int v[500];    // 体积</span><br><span class="line">int w[500];    // 价值 </span><br><span class="line">int dp[500][500];  // f[i][j], j体积下前i个物品的最大价值 </span><br><span class="line">int main() </span><br><span class="line">&#123;</span><br><span class="line">    int n, m;   </span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    for(int i = 1; i &lt;= n; i++) </span><br><span class="line">        cin &gt;&gt; v[i] &gt;&gt; w[i];</span><br><span class="line">    for(int i = 1; i &lt;= n; i++) </span><br><span class="line">        for(int j = 1; j &lt;= m; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(j &lt; v[i]) </span><br><span class="line">                dp[i][j] = dp[i - 1][j];</span><br><span class="line">            else    </span><br><span class="line">            //区别就在这一步：完全背包更新状态的规则为横线更新</span><br><span class="line">                dp[i][j] = max(dp[i - 1][j], dp[i][j - v[i]] + w[i]);</span><br><span class="line">        &#125;           </span><br><span class="line">    cout &lt;&lt; dp[n][m] &lt;&lt; endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="三、"><a href="#三、" class="headerlink" title="三、"></a>三、</h2>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/03/15/%E4%B8%89%E7%A7%8D%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-BFS" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -626,7 +772,7 @@
 <p>4、计算顺序</p>
 <p>&emsp;&emsp;在动态规划类题目中尝尝需要我们反着计算，这道题就是如此，我们先从小的数开始计算，从1、2…一直算到给定的目标数，这样后面较大的数可以利用前面较小数的计算结果。</p>
 <p><strong>解答：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int coinChange(int[] A,int M) &#123;</span><br><span class="line">        int n=A.length;</span><br><span class="line">        int[] f=new int[M+1];</span><br><span class="line">        f[0]=0;</span><br><span class="line">        for(int i=1;i&lt;=M;i++)</span><br><span class="line">        &#123;//设置从小到大反着的计算顺序</span><br><span class="line">            f[i]=Integer.MAX_VALUE;//赋初值为无穷大</span><br><span class="line">            for(int j=0;j&lt;n;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                if(i&gt;=A[j]&amp;&amp;f[i-A[j]]!=Integer.MAX_VALUE&amp;&amp;f[i-A[j]]+1&lt;f[i])</span><br><span class="line">                //第一个条件：排除X-ak&lt;0的情况，也就是分析的时候说的边界情况；第二个条件：保证子问题得到过解决；第三个条件：有更好的解决方案，即使硬币数更少。</span><br><span class="line">                &#123;</span><br><span class="line">                    f[i]=f[i-A[j]]+1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(f[M]==Integer.MAX_VALUE) &#123;</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            return f[M];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">     int coinChange(vector&lt;int&gt;&amp; coins, int amount)&#123;</span><br><span class="line">        vector&lt;int&gt; f(amount+1);</span><br><span class="line">        int i,j;</span><br><span class="line">        f[0] = 0;//初始化只让总金额为0的方案可行且用的硬币数为0</span><br><span class="line">        for(i=1;i&lt;=amount;++i)&#123;</span><br><span class="line">            f[i]=-1;</span><br><span class="line">            for(j=0;j&lt;coins.size();++j)&#123;</span><br><span class="line">                if(i&gt;=coins[j] &amp;&amp; f[i-coins[j]]!=-1)&#123;</span><br><span class="line">                    if(f[i]==-1 || f[i-coins[j]]+1&lt;f[i])&#123;</span><br><span class="line">                        f[i]=f[i-coins[j]]+1;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return f[amount];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>总结：</strong></p>
 <p>&emsp;&emsp;以上代码我们不难发现，动态规划很好得避免了重复计算，把时间复杂度从指数降到了n方，从而达到了算法题的规定。</p>
 
@@ -763,148 +909,6 @@ public:
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/01/13/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%9703/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-大数运算02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/01/13/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%9702/">大数运算02</a>
-    </h1>
-  
-
-        
-        <a href="/2022/01/13/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%9702/" class="archive-article-date">
-  	<time datetime="2022-01-12T16:47:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="大数加法"><a href="#大数加法" class="headerlink" title="大数加法"></a>大数加法</h1><p><strong>例1：</strong> 以字符串的形式读入两个数字，编写一个函数计算它们的和，以字符串形式返回。</p>
-<p>数据范围：len(s),len(t)≤100000，字符串仅由’0’~‘9’构成。</p>
-<p>要求：时间复杂度 O(n)。</p>
-<p><strong>答案及解析：</strong></p>
-<p>&emsp;&emsp;大数的运算一个最基本的思想就是把的大数的每个位数放入数组中，进行每位数计算，每位数的计算结果再放入新的数组中，连起来作为最终结果。</p>
-<p>&emsp;&emsp;大数的加法这里很重要的一个点就是要定义一个进位数carry，每次都要考虑与进位数进行相加以及产生新的进位数。</p>
-<p>&emsp;&emsp;本题用到的是String这个容器，String本身也有数组的某些性质，例如可以用下标的方式来访问字符串的每个字符，也具有其独特的某些性质，例如可以快速初始化、可以快速增删改查等等，具体将在《Sting容器》中讲解，下面看代码。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    /**</span><br><span class="line">     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可</span><br><span class="line">     * 计算两个数之和</span><br><span class="line">     * @param s string字符串 表示第一个整数</span><br><span class="line">     * @param t string字符串 表示第二个整数</span><br><span class="line">     * @return string字符串</span><br><span class="line">     */</span><br><span class="line">    string solve(string s, string t) &#123;</span><br><span class="line">        if (s.size() == 0) return t;</span><br><span class="line">        if (t.size() == 0) return s;//如果两数中有一个为0（及有一个字符串为空），则直接返回另外一个字符串</span><br><span class="line">        int n = max(s.size(), t.size()) + 1, ind1 = s.size() - 1, ind2 = t.size() - 1, carry = 0;</span><br><span class="line">        string ans(n, &#x27;0&#x27;);//预留好和值的最大可能位数，并先将每位初始化为0</span><br><span class="line">        for (int i = n - 1; i &gt;= 0; --i) &#123;</span><br><span class="line">            int x = ind1 &gt;= 0 ? s[ind1] - &#x27;0&#x27; : 0;</span><br><span class="line">            int y = ind2 &gt;= 0 ? t[ind2] - &#x27;0&#x27; : 0;//依次取每位上的字符数，并将其转化为整型数字用于计算</span><br><span class="line">            int sum = x + y + carry;</span><br><span class="line">            carry = sum / 10;//大数运算中必不可少的进位数</span><br><span class="line">            sum %= 10;</span><br><span class="line">            ans[i] = sum + &#x27;0&#x27;;//将运算后的每位上的整型数重新转化为字符型</span><br><span class="line">            --ind1;</span><br><span class="line">            --ind2;</span><br><span class="line">        &#125;</span><br><span class="line">        if (ans[0] == &#x27;0&#x27;) return ans.substr(1);//如果最高位没有进位，也就是说预留的位数多出一位，通过substr()方法去掉第一位0</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/01/13/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%9702/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-大数运算01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/01/12/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%9701/">大数运算01</a>
-    </h1>
-  
-
-        
-        <a href="/2022/01/12/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%9701/" class="archive-article-date">
-  	<time datetime="2022-01-12T15:53:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="字符数字转化为整型数字"><a href="#字符数字转化为整型数字" class="headerlink" title="字符数字转化为整型数字"></a>字符数字转化为整型数字</h1><h2 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h2><p><strong>‘字符’ - ‘0’</strong> ,举例如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">char a=&#x27;5&#x27;,b=&#x27;0&#x27;;</span><br><span class="line">int c=a-b;</span><br><span class="line">cout&lt;&lt; c &lt;&lt;endl; //结果输出5</span><br></pre></td></tr></table></figure>
-<h2 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h2><p>&emsp;&emsp;字符相加减实际上就是该字符所对应的ASK码相加减，<strong>数字的ASK码是按照顺序来规定的</strong>，‘0’到‘9’的ASK码值依次是48到58；因此他们ASK码的差值恰好等于自身的数值，我们这里再用一个整形数去接收它，就能成功实现将字符数字转化为整型数字了。</p>
-<h2 id="应用："><a href="#应用：" class="headerlink" title="应用："></a>应用：</h2><p>&emsp;&emsp;在大数运算的算法类型中经常会出现由字符串作为输入值的算法题，那么怎么将字符串的各个字符传化为数字进行运算是破解该类型题的第一步。举例如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">string str=&quot;453547&quot;;</span><br><span class="line">int i;</span><br><span class="line">cin&gt;&gt;i; //i&lt;str.size()-1;</span><br><span class="line">int x=str[i]-&#x27;0&#x27;; //将第i个字符数字转化为整型数字</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/01/12/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%9701/">展开全文 >></a>
         </p>
       
 
