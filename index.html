@@ -1,23 +1,651 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
 
-{% block page_class %}
-  {% if is_home() %} page-home {% endif %}
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
-  </section>
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="An elegant Material-Design theme for Hexo">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/03/23/%E5%85%B6%E4%BB%96%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98/" target="_self">
+          其他动态规划问题
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/03/23/%E5%85%B6%E4%BB%96%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98/" target="_self">
+          
+          打家劫舍、LIS、LCS一、打家劫舍题目描述：你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。给定一个代表每个房屋存放金额的非负整数数组，计算你在不触动警报装置的情况下，能够偷窃到的最高金额。 分析：抽象出子问题：写出状态转移方程：dp[i]&#x3D;max(dp[i-1
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-23 13:27" pubdate>
+              2022-03-23
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/03/15/%E4%B8%89%E7%A7%8D%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" target="_self">
+          三种背包问题
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/03/15/%E4%B8%89%E7%A7%8D%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" target="_self">
+          
+          动态规划之三种背包问题一、01背包题目介绍：有 N 件物品和一个容量为 V 的背包，每件物品有各自的价值且只能被选择一次，要求在有限的背包容量下，装入的物品总价值最大。 解析：首先听名字为什么叫01背包问题呢，就是指每件物品都有两种状态：选择和不选择，所以如果采用暴力搜索，就是将所有的情况枚举出来一一比较。 123456789101112131415161718192021222324252627
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-15 18:54" pubdate>
+              2022-03-15
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/03/11/BFS/" target="_self">
+          BFS
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/03/11/BFS/" target="_self">
+          
+          广度优先搜索(BFS)典型案例： 1、求最短路问题(走迷宫问题) 例：给定一个n*m的二维整数数组，用来表示一个迷宫，数组只包含0和1，1表示可走，0表示不可走。求一个人从(1,1)走到(n,m)至少需要移动几次。注：他一次只能上下左右移动一格。 1234567891011121314151617181920212223242526272829303132333435363738394041424
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-11 20:52" pubdate>
+              2022-03-11
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/03/10/DFS/" target="_self">
+          DFS
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/03/10/DFS/" target="_self">
+          
+          深度优先搜索解题模板： 应用案例：1、全排列问题 例：按照字典序输出自然数1到n所有不重复的排列，要求所产生的任意一数字序列中不允许出现重复数字。 常规做法：用C++内置排序算法： 12 #include &lt;algorithm&gt;bool next_permutation(iterator start,iterator end)当当前序列不存在下一个排列时，函数返回false，否则返回t
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-10 15:15" pubdate>
+              2022-03-10
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/18/innerHTML%E7%9A%84%E7%A7%98%E5%AF%86/" target="_self">
+          innerHTML的秘密
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/02/18/innerHTML%E7%9A%84%E7%A7%98%E5%AF%86/" target="_self">
+          
+          innerHTML易错&amp;emsp;&amp;emsp;在一次用原生js写的项目中拿到后端的数据用mapAPI对页面进行渲染的时候发现明明是一模一样代码，都能选中特点的节点为之绑定单击响应事件，只是放的位置不同，怎么前者就绑定不成功呢。 &amp;emsp;&amp;emsp;更奇怪的是二者的’console.log(commend[index])’在控制台打印出来的内容是一样的，但是无意间发现后者鼠标放在输出的内容上，在
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-18 00:28" pubdate>
+              2022-02-18
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/23/%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%9C%9F%E9%A2%9801/" target="_self">
+          蓝桥杯真题01
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/01/23/%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%9C%9F%E9%A2%9801/" target="_self">
+          
+          题目描述： &amp;emsp;&amp;emsp;小蓝正在学习一门神奇的语言，这门语言中的单词都是由小写英文字母组 成，有些单词很长，远远超过正常英文单词的长度。小蓝学了很长时间也记不住一些单词，他准备不再完全记忆这些单词，而是根据单词中哪个字母出现得最多来分辨单词。 &amp;emsp;&amp;emsp;现在，请你帮助小蓝，给了一个单词后，帮助他找到出现最多的字母和这 个字母出现的次数。 输入描述： 输入一行包含一个单词，
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-23 20:53" pubdate>
+              2022-01-23
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/15/CSS01/" target="_self">
+          CSS01
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/01/15/CSS01/" target="_self">
+          
+          论inline-block你可能不知道的秘密&amp;emsp;&amp;emsp;说到“display：inline-block”；想必大家都不陌生，把一个块级元素或者是行内元素变成一个行内块元素有很多优点，可以在设置的宽高的同时实现元素的并排布局。然而，你可能并没有发现行内块元素存在的两个小秘密，在某种程度上也可以说是小bug。 1、行内块元素之间的缝隙问题&amp;emsp;&amp;emsp;很多时候，你会发现行内块元素
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-15 16:03" pubdate>
+              2022-01-15
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/15/CSS02/" target="_self">
+          CSS02
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/01/15/CSS02/" target="_self">
+          
+          BFC一、什么是BFC？&amp;emsp;&amp;emsp;BFC的全称是Block Formatting Contexts，即块级格式化上下文，它属于定位普通流。具有 BFC 特性的元素可以看作是隔离了的独立容器，容器里面的元素不会在布局上影响到外面的元素，并且 BFC 具有普通容器所没有的一些特性。通俗一点来讲，可以把 BFC 理解为一个封闭的大箱子，箱子内部的元素无论如何翻江倒海，都不会影响到外部。 二
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-15 16:00" pubdate>
+              2022-01-15
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/15/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%BE%8B%E9%A2%98%E5%89%96%E6%9E%90/" target="_self">
+          动态规划例题剖析
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/01/15/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%BE%8B%E9%A2%98%E5%89%96%E6%9E%90/" target="_self">
+          
+          Coin Change题目描述 &amp;emsp;&amp;emsp;给出不同面额的硬币以及一个总金额。写一个方法来计算给出的总金额可以换取的最少的硬币数量。 如果已有硬币的任意组合均无法与总金额面额相等, 那么返回-1。 分析 一、莫入误区 &amp;emsp;&amp;emsp;很多人初看这道题就会以为是贪心算法类题目，在这里我们举个例子，假设硬币的面额分别为2、5、7，总金额为27，如果按照贪心算法，我们会先选择面额大的
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-15 10:08" pubdate>
+              2022-01-15
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/13/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%9703/" target="_self">
+          大数运算03
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/01/13/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%9703/" target="_self">
+          
+          大数乘法&amp;emsp;&amp;emsp;大数乘法是基于大数加法的算法，大致思路如下： &amp;emsp;&amp;emsp;将两个数的其中一个数的每个位数依次乘以另外那个数的各个位数，再将得到的各个结果相加（这里就要用到上一节大数的加法了）。 例1： 以字符串的形式读入两个数字，编写一个函数计算它们的乘积，以字符串形式返回。 数据范围： 读入的数字大小满足 0≤n≤10的1000次方 要求：空间复杂度 O(n)，时间复
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-13 19:30" pubdate>
+              2022-01-13
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
